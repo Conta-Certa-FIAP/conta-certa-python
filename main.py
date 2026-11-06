@@ -6,6 +6,7 @@ Ponto de entrada do programa. Para executar: python main.py
 from arquivos import carregar_dados
 from dividas import menu_dividas
 from orcamento import configurar_orcamento, mostrar_diagnostico
+from simulacao import menu_simulacao
 from utilitarios import LINHA
 
 
@@ -17,6 +18,7 @@ def menu_principal(dados):
         print(f"{LINHA}")
         print(f"1 - Minhas dívidas")
         print(f"2 - Meu orçamento")
+        print(f"3 - Simular plano de quitação")
         print(f"4 - Diagnóstico")
         print(f"0 - Sair")
 
@@ -27,6 +29,8 @@ def menu_principal(dados):
                 menu_dividas(dados)
             case "2":
                 configurar_orcamento(dados)
+            case "3":
+                menu_simulacao(dados)
             case "4":
                 mostrar_diagnostico(dados)
             case "0":
