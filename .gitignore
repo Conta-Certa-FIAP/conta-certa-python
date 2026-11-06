@@ -1,0 +1,9 @@
+# Arquivos gerados pelo Python
+__pycache__/
+*.pyc
+
+# Ambiente virtual
+.venv/
+
+# Dados gerados pelo programa (ficam só no computador de quem usa)
+*.json
