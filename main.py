@@ -5,6 +5,7 @@ Ponto de entrada do programa. Para executar: python main.py
 
 from arquivos import carregar_dados
 from dividas import menu_dividas
+from orcamento import configurar_orcamento, mostrar_diagnostico
 from utilitarios import LINHA
 
 
@@ -15,6 +16,8 @@ def menu_principal(dados):
         print(f"CONTA CERTA - Simulador de saída das dívidas")
         print(f"{LINHA}")
         print(f"1 - Minhas dívidas")
+        print(f"2 - Meu orçamento")
+        print(f"4 - Diagnóstico")
         print(f"0 - Sair")
 
         opcao = input(f"Escolha uma opção: ").strip()
@@ -22,6 +25,10 @@ def menu_principal(dados):
         match opcao:
             case "1":
                 menu_dividas(dados)
+            case "2":
+                configurar_orcamento(dados)
+            case "4":
+                mostrar_diagnostico(dados)
             case "0":
                 print(f"\nAté logo! Seus dados estão salvos.")
                 return
