@@ -6,7 +6,7 @@ se uma regra de validação mudar, basta alterar neste único lugar.
 """
 
 # Constantes ficam em maiúsculas por convenção: indicam valores que não mudam.
-LINHA = "=" * 72
+LINHA = "=" * 78
 
 # Limite de segurança para valores em dinheiro. Além de barrar erros de digitação,
 # ele recusa "inf" e "nan", textos que a função float() aceita como se fossem números.
