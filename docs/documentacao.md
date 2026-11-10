@@ -1,4 +1,4 @@
-# Conta Certa: Simulador de Saída das Dívidas
+# ContaTech: Simulador de Saída das Dívidas
 
 **FIAP - Análise e Desenvolvimento de Sistemas - 1º ano**
 
@@ -60,7 +60,7 @@ plano de quitação possível dentro do próprio orçamento.
 
 ## 3. Justificativa
 
-O Conta Certa é uma solução CitizenTech: usa a tecnologia para resolver um problema
+O ContaTech é uma solução CitizenTech: usa a tecnologia para resolver um problema
 concreto de cidadania financeira. Este simulador transforma uma conta difícil de fazer à
 mão, com juros que mudam o saldo todos os meses, em uma resposta direta: em quanto tempo
 a dívida acaba e quanto será pago em juros em cada caminho.
@@ -78,7 +78,7 @@ computador, em um arquivo local.
 
 **Fora do escopo:**
 
-- Integração com a API Java e com o front-end do Conta Certa.
+- Integração com a API Java e com o front-end do ContaTech.
 - Conexão com bancos, negociação com credores e pagamentos reais.
 - Multas por atraso, mudanças futuras de taxa e novas compras. A simulação considera
   juros fixos e o mesmo valor pago em todos os meses, então o resultado é uma estimativa.
@@ -148,12 +148,12 @@ A prioridade é calculada de novo a cada mês, pois os saldos mudam.
 | `if-elif-else` | Diagnóstico, avisos da simulação e mensagens do orçamento |
 | Lista | Conjunto das dívidas e ordem de quitação |
 | Dicionário | Cada dívida, o orçamento e o resultado da simulação |
-| Tupla | Tipos válidos, pares (mês, credor) e retorno de duas informações em uma função |
+| Tupla | Tipos válidos, opções dos menus, pares (mês, credor) e retorno de duas informações em uma função |
 | Set | Credores únicos, recalculados a partir da lista |
 | String | Tratamento de textos digitados e formatação dos valores em R$ |
 | Funções | Todo o programa, com parâmetros e retorno |
 | `try/except` | Validação de números e tratamento de erros de arquivo |
-| Arquivo JSON | Dados salvos a cada alteração e criados se não existirem |
+| Arquivo JSON | Dados salvos a cada alteração, criados se não existirem e conferidos ao abrir |
 
 ### 6.5 Organização do código
 
@@ -164,7 +164,7 @@ A prioridade é calculada de novo a cada mês, pois os saldos mudam.
 | `orcamento.py` | Orçamento e diagnóstico |
 | `simulacao.py` | Cálculo e telas dos planos de quitação |
 | `arquivos.py` | Leitura e gravação do JSON |
-| `utilitarios.py` | Validação de entradas e formatação, compartilhadas pelos módulos |
+| `utilitarios.py` | Validação de entradas, menus e formatação, compartilhados pelos módulos |
 
 ## 7. Resultados esperados
 
@@ -211,4 +211,4 @@ motivação. O diagnóstico mostra 15,33% da renda comprometida com parcelas: si
 
 4. Use os números dos menus para navegar. Valores podem ser digitados como `1500,50` ou `1.500,50`.
 
-O arquivo `dados_conta_certa.json` é criado na primeira execução, na pasta do projeto.
+O arquivo `dados_contatech.json` é criado na primeira execução, na pasta do projeto.

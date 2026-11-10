@@ -1,7 +1,7 @@
-# Conta Certa - Simulador de saída das dívidas
+# ContaTech - Simulador de saída das dívidas
 
 Programa de terminal feito para a Global Solution da FIAP (2026/2), na disciplina
-Computational Thinking Using Python. Faz parte da solução CitizenTech **Conta Certa**,
+Computational Thinking Using Python. Faz parte da solução CitizenTech **ContaTech**,
 voltada a famílias de baixa renda endividadas. Funciona de forma independente: não se
 conecta à API Java nem ao front-end do projeto.
 
@@ -12,7 +12,7 @@ conecta à API Java nem ao front-end do projeto.
 - **Simular plano de quitação:** calcula mês a mês os métodos Avalanche (juros mais altos primeiro) e Bola de neve (menor saldo primeiro) e compara os dois em meses até quitar e total pago em juros.
 - **Diagnóstico:** mostra a porcentagem da renda comprometida com parcelas: até 30% é saudável, até 50% pede atenção e acima disso é crítico.
 
-Os dados ficam salvos no arquivo `dados_conta_certa.json`, criado automaticamente na
+Os dados ficam salvos no arquivo `dados_contatech.json`, criado automaticamente na
 pasta do projeto e atualizado a cada alteração. Esse arquivo não vai para o repositório.
 
 ## Como rodar
@@ -36,7 +36,7 @@ conta-certa-python/
 ├── orcamento.py       # Renda, gastos fixos e diagnóstico
 ├── simulacao.py       # Cálculo e telas dos métodos Avalanche e Bola de neve
 ├── arquivos.py        # Leitura e gravação do arquivo JSON
-├── utilitarios.py     # Validação de entradas e formatação de valores
+├── utilitarios.py     # Validação de entradas, menus e formatação de valores
 ├── integrantes.txt    # Nome, RM e turma dos integrantes
 └── docs/
     └── documentacao.md  # Conteúdo do PDF de entrega

@@ -7,13 +7,20 @@ ser testada sozinha, e a comparação pode rodar os dois métodos sem mostrar na
 
 from dividas import obter_dividas_ativas, somar_saldos
 from orcamento import calcular_sobra
-from utilitarios import LINHA, VALOR_MAXIMO, formatar_moeda, formatar_numero, ler_numero
+from utilitarios import VALOR_MAXIMO, formatar_moeda, ler_numero, ler_opcao
 
 # Regra do trabalho: a simulação para com aviso se passar de 360 meses (30 anos).
 LIMITE_MESES = 360
 
 # Um dicionário liga o nome usado no código ao nome mostrado na tela.
 NOMES_METODOS = {"avalanche": "Avalanche", "bola_de_neve": "Bola de neve"}
+
+OPCOES_MENU_SIMULACAO = (
+    ("1", "Avalanche (paga primeiro os juros mais altos)"),
+    ("2", "Bola de neve (paga primeiro o menor saldo)"),
+    ("3", "Comparar os dois"),
+    ("0", "Voltar"),
+)
 
 
 def calcular_juros(saldo, taxa):
@@ -310,15 +317,7 @@ def simular_opcao(dados, opcao):
 def menu_simulacao(dados):
     """Submenu de simulação. Repete até a pessoa escolher voltar."""
     while True:
-        print(f"\n{LINHA}")
-        print(f"SIMULAR PLANO DE QUITAÇÃO")
-        print(f"{LINHA}")
-        print(f"1 - Avalanche (paga primeiro os juros mais altos)")
-        print(f"2 - Bola de neve (paga primeiro o menor saldo)")
-        print(f"3 - Comparar os dois")
-        print(f"0 - Voltar")
-
-        opcao = input(f"Escolha uma opção: ").strip()
+        opcao = ler_opcao("SIMULAR PLANO DE QUITAÇÃO", OPCOES_MENU_SIMULACAO)
 
         # O caractere | significa "ou": os três casos seguem pelo mesmo caminho.
         match opcao:

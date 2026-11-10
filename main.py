@@ -1,4 +1,4 @@
-"""Conta Certa - Simulador de saída das dívidas.
+"""ContaTech - Simulador de saída das dívidas.
 
 Ponto de entrada do programa. Para executar: python main.py
 """
@@ -7,22 +7,21 @@ from arquivos import carregar_dados
 from dividas import menu_dividas
 from orcamento import configurar_orcamento, mostrar_diagnostico
 from simulacao import menu_simulacao
-from utilitarios import LINHA
+from utilitarios import ler_opcao
+
+OPCOES_MENU_PRINCIPAL = (
+    ("1", "Minhas dívidas"),
+    ("2", "Meu orçamento"),
+    ("3", "Simular plano de quitação"),
+    ("4", "Diagnóstico"),
+    ("0", "Sair"),
+)
 
 
 def menu_principal(dados):
     """Menu principal. Repete até a pessoa escolher sair."""
     while True:
-        print(f"\n{LINHA}")
-        print(f"CONTA CERTA - Simulador de saída das dívidas")
-        print(f"{LINHA}")
-        print(f"1 - Minhas dívidas")
-        print(f"2 - Meu orçamento")
-        print(f"3 - Simular plano de quitação")
-        print(f"4 - Diagnóstico")
-        print(f"0 - Sair")
-
-        opcao = input(f"Escolha uma opção: ").strip()
+        opcao = ler_opcao("CONTATECH - Simulador de saída das dívidas", OPCOES_MENU_PRINCIPAL)
 
         match opcao:
             case "1":

@@ -37,11 +37,26 @@ def converter_para_numero(texto):
     if "," in limpo:
         # Com vírgula, ela é o separador decimal e os pontos separam os milhares.
         limpo = limpo.replace(".", "").replace(",", ".")
-    elif limpo.count(".") == 1 and len(limpo.split(".")[1]) == 3:
+    elif pontos_separam_milhares(limpo):
         # "1.500" no Brasil significa mil e quinhentos, e não 1,5.
         limpo = limpo.replace(".", "")
 
     return float(limpo)
+
+
+def pontos_separam_milhares(texto):
+    """Diz se os pontos do texto separam milhares, como em "1.500" e "1.500.000"."""
+    # Sem vírgula, o ponto é ambíguo: "1.5" é um decimal, mas "1.500" é mil e quinhentos.
+    # Tratamos como milhar quando todos os grupos depois do primeiro ponto têm 3 dígitos.
+    partes = texto.split(".")
+
+    if len(partes) == 1 or partes[0] == "":
+        return False
+
+    for grupo in partes[1:]:
+        if len(grupo) != 3:
+            return False
+    return True
 
 
 def ler_numero(mensagem, minimo, maximo, padrao=None):
@@ -113,3 +128,21 @@ def ler_confirmacao(mensagem):
             return False
         else:
             print(f"Responda S para sim ou N para não.")
+
+
+def ler_opcao(titulo, opcoes):
+    """Mostra um menu e devolve a opção digitada, já sem espaços nas pontas.
+
+    opcoes é uma tupla de pares (código, descrição), por exemplo:
+    (("1", "Listar dívidas"), ("0", "Voltar")). Os menus só mudam de título
+    e de opções, então esta função evita repetir os prints em cada um deles.
+    """
+    print(f"\n{LINHA}")
+    print(f"{titulo}")
+    print(f"{LINHA}")
+    for codigo, descricao in opcoes:
+        print(f"{codigo} - {descricao}")
+
+    # A opção é lida como texto. Assim, uma letra não gera erro de conversão:
+    # ela apenas cai no "case _" do menu, que trata qualquer opção inválida.
+    return input(f"Escolha uma opção: ").strip()

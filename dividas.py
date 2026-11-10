@@ -9,6 +9,7 @@ from utilitarios import (
     ler_confirmacao,
     ler_inteiro,
     ler_numero,
+    ler_opcao,
     ler_texto,
 )
 
@@ -18,6 +19,15 @@ TIPOS_VALIDOS = ("CARTAO", "CARNE", "EMPRESTIMO", "CONTA", "OUTRO")
 
 # Juros acima de 100% ao mês são recusados porque quase sempre são erro de digitação.
 JUROS_MAXIMO = 100.0
+
+# Cada opção do menu é um par (código, descrição). A tupla externa também é fixa.
+OPCOES_MENU_DIVIDAS = (
+    ("1", "Cadastrar dívida"),
+    ("2", "Listar dívidas"),
+    ("3", "Registrar pagamento"),
+    ("4", "Remover dívida"),
+    ("0", "Voltar"),
+)
 
 
 def criar_divida(credor, tipo, saldo, juros_mensal, parcela_minima):
@@ -56,9 +66,11 @@ def obter_dividas_ativas(dividas):
 
 def somar_parcelas(dividas):
     """Devolve a soma das parcelas mínimas das dívidas que ainda estão ativas."""
+    # Uma dívida quase quitada pode ter saldo menor que a parcela. Nesse caso só se paga
+    # o saldo, por isso usamos o menor dos dois valores, como na simulação.
     total = 0.0
     for divida in obter_dividas_ativas(dividas):
-        total = total + divida["parcela_minima"]
+        total = total + min(divida["parcela_minima"], divida["saldo"])
     return round(total, 2)
 
 
@@ -208,19 +220,9 @@ def remover_divida(dados):
 def menu_dividas(dados):
     """Submenu de dívidas. Repete até a pessoa escolher voltar."""
     while True:
-        print(f"\n{LINHA}")
-        print(f"MINHAS DÍVIDAS")
-        print(f"{LINHA}")
-        print(f"1 - Cadastrar dívida")
-        print(f"2 - Listar dívidas")
-        print(f"3 - Registrar pagamento")
-        print(f"4 - Remover dívida")
-        print(f"0 - Voltar")
+        opcao = ler_opcao("MINHAS DÍVIDAS", OPCOES_MENU_DIVIDAS)
 
-        # A opção é lida como texto. Assim, uma letra não gera erro de conversão:
-        # ela apenas cai no "case _", que trata qualquer opção inválida.
-        opcao = input(f"Escolha uma opção: ").strip()
-
+        # match-case compara a opção com cada "case"; o "case _" pega todo o resto.
         match opcao:
             case "1":
                 cadastrar_divida(dados)

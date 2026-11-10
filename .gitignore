@@ -7,3 +7,4 @@ __pycache__/
 
 # Dados gerados pelo programa (ficam só no computador de quem usa)
 *.json
+*.json.tmp
